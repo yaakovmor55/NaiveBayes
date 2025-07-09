@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="755fc3b9-ffe0-423a-a117-9d21126f515a" name="Changes" comment="Creating the model 2">
-      <change afterPath="$PROJECT_DIR$/cleam_table.py" afterDir="false" />
+    <list default="true" id="755fc3b9-ffe0-423a-a117-9d21126f515a" name="Changes" comment="add the class clean table">
+      <change afterPath="$PROJECT_DIR$/naive_bayes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cleam_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/cleam_table.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "yaakovmor55"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/yaakovmor55/NaiveBayes.git",
+    "accountId": "7153d33a-54f4-4b4a-b4bb-7b048b1e1b11"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -35,6 +49,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.a.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.naive_bayes.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
@@ -79,7 +95,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1752046117606</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="add the class clean table">
+      <option name="closed" value="true" />
+      <created>1752049326374</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752049326374</updated>
+    </task>
+    <task id="LOCAL‎-00005" summary="add the class clean table">
+      <option name="closed" value="true" />
+      <created>1752049339088</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752049339088</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,6 +129,7 @@
     <MESSAGE value="starting the project" />
     <MESSAGE value="Creating the model" />
     <MESSAGE value="Creating the model 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating the model 2" />
+    <MESSAGE value="add the class clean table" />
+    <option name="LAST_COMMIT_MESSAGE" value="add the class clean table" />
   </component>
 </project>
