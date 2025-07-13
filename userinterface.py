@@ -75,6 +75,6 @@ class UI:
 
 
 
-u = UI()
-u.login_menu()
-u.menu()
+# u = UI()
+# u.login_menu()
+# u.menu()
