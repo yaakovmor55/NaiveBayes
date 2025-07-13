@@ -1,0 +1,117 @@
+Index: a.py
+===================================================================
+diff --git a/a.py b/a.py
+deleted file mode 100644
+--- a/a.py	(revision 7f25d1fd92eeff26e0b40c4890e3353cc3105c0e)
++++ /dev/null	(revision 7f25d1fd92eeff26e0b40c4890e3353cc3105c0e)
+@@ -1,43 +0,0 @@
+-import pandas as pd
+-
+-class NB:
+-    def __init__(self, csv_file):
+-        self.csv_file = csv_file
+-        self.table = pd.read_csv(csv_file).dropna()
+-        self.target_column = self.table.columns[-1]
+-        self.features = [col for col in self.table.columns if col != self.target_column and col != "id"]
+-        self.model = {}
+-
+-    def find_unique(self):
+-        for unique in self.table[self.target_column].unique():
+-            self.model[unique] = {}
+-
+-
+-    def feel_keys(self):
+-        for key in self.model:
+-            for feature in self.features:
+-                self.model[key][feature] = {}
+-
+-    def statistical_values(self):
+-        for key in self.model:
+-            filtered_table = self.table[self.table[self.target_column] == key]
+-            for feature in self.features:
+-                value_count = filtered_table[feature].value_counts(normalize=True)
+-                for val, ratio in value_count.items():
+-                    self.model[key][feature][val] = round(ratio, 3)
+-
+-
+-
+-    def target_variable(self):
+-        value_ratios = self.table[self.target_column].value_counts(normalize=True).to_dict()
+-        self.model['target_ratio'] = value_ratios
+-
+-
+-nb = NB("C:/Users/User/Downloads/buy_computer_data.csv")
+-# nb.target_variable()
+-nb.find_unique()
+-nb.feel_keys()
+-nb.statistical_values()
+-print(nb.model)
+-# print(nb.table)
+-# print(nb.statistical_values())
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"755fc3b9-ffe0-423a-a117-9d21126f515a\" name=\"Changes\" comment=\"Creating the model\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2zaSrjPLAhii0EeALqHMOb1wIBH\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Python.a.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-6a3326d57233-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.24807.21\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"755fc3b9-ffe0-423a-a117-9d21126f515a\" name=\"Changes\" comment=\"\" />\r\n      <created>1751967891510</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1751967891510</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E-00001\" summary=\"starting the project\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751968568329</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\u200E\" />\r\n      <updated>1751968568330</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E-00002\" summary=\"Creating the model\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1752044661804</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\u200E\" />\r\n      <updated>1752044661804</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"starting the project\" />\r\n    <MESSAGE value=\"Creating the model\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Creating the model\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7f25d1fd92eeff26e0b40c4890e3353cc3105c0e)
++++ b/.idea/workspace.xml	(date 1752045633098)
+@@ -18,6 +18,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="ProjectColorInfo">{
+@@ -29,13 +34,13 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Python.a.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Python.a.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "09/072025"
+   }
+-}</component>
++}]]></component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+@@ -68,7 +73,15 @@
+       <option name="project" value="LOCAL‎" />
+       <updated>1752044661804</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL‎-00003" summary="Creating the model">
++      <option name="closed" value="true" />
++      <created>1752045470984</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL‎-00003" />
++      <option name="project" value="LOCAL‎" />
++      <updated>1752045470984</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -84,6 +97,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="starting the project" />
++    <MESSAGE value="Creating the model with simple naive bayes" />
+     <MESSAGE value="Creating the model" />
+     <option name="LAST_COMMIT_MESSAGE" value="Creating the model" />
+   </component>

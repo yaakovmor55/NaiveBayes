@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="755fc3b9-ffe0-423a-a117-9d21126f515a" name="Changes" comment="add the class clean table">
-      <change afterPath="$PROJECT_DIR$/naive_bayes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
+    <list default="true" id="755fc3b9-ffe0-423a-a117-9d21126f515a" name="Changes" comment="i added the naive bayes and cheng the functions">
+      <change afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userinterface.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cleam_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/cleam_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/naive_bayes.py" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,15 +49,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.a.executor&quot;: &quot;Run&quot;,
-    &quot;Python.model.executor&quot;: &quot;Run&quot;,
-    &quot;Python.naive_bayes.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.a.executor": "Run",
+    "Python.api.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.model.executor": "Run",
+    "Python.naive_bayes.executor": "Run",
+    "Python.test_model.executor": "Run",
+    "Python.userinterface.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -111,7 +118,31 @@
       <option name="project" value="LOCAL‎" />
       <updated>1752049339088</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎-00006" summary="i added the naive bayes and cheng the functions">
+      <option name="closed" value="true" />
+      <created>1752068535476</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752068535476</updated>
+    </task>
+    <task id="LOCAL‎-00007" summary="i added the naive bayes and cheng the functions">
+      <option name="closed" value="true" />
+      <created>1752068540385</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL‎-00007" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752068540385</updated>
+    </task>
+    <task id="LOCAL‎-00008" summary="i added the naive bayes and cheng the functions">
+      <option name="closed" value="true" />
+      <created>1752068596616</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752068596616</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,6 +161,7 @@
     <MESSAGE value="Creating the model" />
     <MESSAGE value="Creating the model 2" />
     <MESSAGE value="add the class clean table" />
-    <option name="LAST_COMMIT_MESSAGE" value="add the class clean table" />
+    <MESSAGE value="i added the naive bayes and cheng the functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="i added the naive bayes and cheng the functions" />
   </component>
 </project>
