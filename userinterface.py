@@ -34,11 +34,11 @@ class UI:
             match user_input:
                 case "1":
                     self.test = TestTable(self.user_table.table)
-                    print(f"Success rate: {self.test.test()}%")
+                    print(f"Success rate: {self.test.test()}")
                 case "2":
                     self.choice()
                 case "3":
-                    print("Exiting... Goodbye!")
+                    print("Goodbye!")
                     break
                 case _:
                     print("Invalid choice. Please enter 1, 2, or 3.")

@@ -12,6 +12,10 @@ class CleanTable:
         if "id" in self.table.columns:
             self.table.drop("id",axis=1, inplace=True)
 
+    def drop_index(self):
+        if "Index" in self.table.columns:
+            self.table.drop("Index",axis=1, inplace=True)
+
     def drop_duplicate(self):
         duplicated = self.table.T.duplicated()
         self.table = self.table.loc[:, ~duplicated]
@@ -19,5 +23,6 @@ class CleanTable:
 
     def start_all(self):
         self.drop_id()
+        self.drop_index()
         self.drop_null()
         self.drop_duplicate()
