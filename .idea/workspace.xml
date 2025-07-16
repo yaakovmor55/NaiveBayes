@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="755fc3b9-ffe0-423a-a117-9d21126f515a" name="Changes" comment="i added the user inter face">
-      <change beforePath="$PROJECT_DIR$/cleam_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/cleam_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userinterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/userinterface.py" afterDir="false" />
+    <list default="true" id="755fc3b9-ffe0-423a-a117-9d21126f515a" name="Changes" comment="added API">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +153,39 @@
       <option name="project" value="LOCAL‎" />
       <updated>1752391122557</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎-00011" summary="change some funcs">
+      <option name="closed" value="true" />
+      <created>1752396198806</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL‎-00011" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752396198806</updated>
+    </task>
+    <task id="LOCAL‎-00012" summary="change some funcs">
+      <option name="closed" value="true" />
+      <created>1752396209578</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL‎-00012" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752396209578</updated>
+    </task>
+    <task id="LOCAL‎-00013" summary="added API">
+      <option name="closed" value="true" />
+      <created>1752400490877</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL‎-00013" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752400490877</updated>
+    </task>
+    <task id="LOCAL‎-00014" summary="added API">
+      <option name="closed" value="true" />
+      <created>1752400496050</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL‎-00014" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1752400496050</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +206,8 @@
     <MESSAGE value="add the class clean table" />
     <MESSAGE value="i added the naive bayes and cheng the functions" />
     <MESSAGE value="i added the user inter face" />
-    <option name="LAST_COMMIT_MESSAGE" value="i added the user inter face" />
+    <MESSAGE value="change some funcs" />
+    <MESSAGE value="added API" />
+    <option name="LAST_COMMIT_MESSAGE" value="added API" />
   </component>
 </project>
