@@ -1,11 +1,11 @@
 from cleam_table import CleanTable
-from model import Model
+from model import NaiveBayesClassifier
 
 
-class ProbabilityCalculating:
+class NaiveBayesPredictor:
 
     @staticmethod
-    def calculation(dict_user_input, model, target_variable):
+    def calculate_posteriors(dict_user_input, model, target_variable):
         result = {}
         for key, val in dict_user_input.items():
             for unique in model:
@@ -17,8 +17,8 @@ class ProbabilityCalculating:
         return result
 
     @staticmethod
-    def result(dict_user_input, model, target_variable):
-        result = ProbabilityCalculating.calculation(dict_user_input, model, target_variable)
+    def predict(dict_user_input, model, target_variable):
+        result = NaiveBayesPredictor.calculate_posteriors(dict_user_input, model, target_variable)
         return max(result, key=result.get)
 
 

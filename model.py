@@ -2,9 +2,9 @@ import pandas as pd
 from cleam_table import CleanTable
 
 
-class Model:
-    def __init__(self, table):
-        self.table = table
+class NaiveBayesClassifier:
+    def __init__(self, dataset):
+        self.table = dataset
         self.target_column = self.table.columns[-1]
         self.features = [col for col in self.table.columns if col != self.target_column]
         self.model = {}

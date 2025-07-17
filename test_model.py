@@ -1,6 +1,6 @@
 from cleam_table import CleanTable
-from model import Model
-from naive_bayes import ProbabilityCalculating
+from model import NaiveBayesClassifier
+from naive_bayes import NaiveBayesPredictor
 
 
 
@@ -16,7 +16,7 @@ class TestTable:
         train_data = table.iloc[:split_index]
         test_data = table.iloc[split_index:]
 
-        self.model = Model(train_data)
+        self.model = NaiveBayesClassifier(train_data)
         self.target = test_data[self.model.target_column]
         self.test_table = test_data.iloc[:, :-1]
 
@@ -28,7 +28,7 @@ class TestTable:
         correct = 0
         for i in range(total):
             user_row = self.row_dict[i]
-            result = ProbabilityCalculating.result(user_row, self.model.model, self.model.target_variable())
+            result = NaiveBayesPredictor.predict(user_row, self.model.model, self.model.target_variable())
             if result == self.target.iloc[i]:
                 correct += 1
 

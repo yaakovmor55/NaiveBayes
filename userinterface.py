@@ -1,8 +1,8 @@
 import os
 from cleam_table import CleanTable
-from model import Model
+from model import NaiveBayesClassifier
 from test_model import TestTable
-from naive_bayes import ProbabilityCalculating
+from naive_bayes import NaiveBayesPredictor
 
 class UI:
     def __init__(self):
@@ -21,7 +21,7 @@ class UI:
                 print("File not found or not a CSV file. Please try again.")
 
         self.user_table = CleanTable(path)
-        self.model = Model(self.user_table.table)
+        self.model = NaiveBayesClassifier(self.user_table.table)
 
     def menu(self):
         while True:
@@ -69,12 +69,12 @@ class UI:
                 except ValueError:
                     print("Invalid input. Please enter a number.")
 
-        prediction = ProbabilityCalculating.result(user_input, self.model.model, self.model.target_variable())
+        prediction = NaiveBayesPredictor.predict(user_input, self.model.model, self.model.target_variable())
         print("\nPrediction result:", prediction)
 
 
 
 
-# u = UI()
-# u.login_menu()
-# u.menu()
+u = UI()
+u.login_menu()
+u.menu()
