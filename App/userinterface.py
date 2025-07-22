@@ -1,8 +1,9 @@
 import os
-from cleam_table import CleanTable
-from model import NaiveBayesClassifier
-from test_model import TestTable
-from naive_bayes import NaiveBayesPredictor
+from App.cleam_table import CleanTable
+from App.loader import Loader
+from App.model import NaiveBayesClassifier
+from App.test_model import TestTable
+from App.naive_bayes import NaiveBayesPredictor
 
 class UI:
     def __init__(self):
@@ -20,7 +21,8 @@ class UI:
             else:
                 print("File not found or not a CSV file. Please try again.")
 
-        self.user_table = CleanTable(path)
+        file = Loader(path)
+        self.user_table = CleanTable(file.table)
         self.model = NaiveBayesClassifier(self.user_table.table)
 
     def menu(self):
@@ -75,6 +77,6 @@ class UI:
 
 
 
-u = UI()
-u.login_menu()
-u.menu()
+# u = UI()
+# u.login_menu()
+# u.menu()

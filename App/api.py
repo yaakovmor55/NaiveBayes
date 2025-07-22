@@ -7,3 +7,5 @@ response = requests.get(API_URL)
 print(response)
 print(response.status_code)
 pprint(response.json())
+
+
