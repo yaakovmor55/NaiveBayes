@@ -1,0 +1,181 @@
+Index: App/loader.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\r\nimport os\r\nimport logging\r\n\r\nlogger = logging.getLogger(__name__)\r\n\r\nclass Loader:\r\n    \"\"\"\r\n    A class to convert various file formats into CSV.\r\n    \"\"\"\r\n\r\n    def __init__(self, file):\r\n        if not os.path.exists(file):\r\n            logger.error(f\"File not found: {file}\")\r\n            raise FileNotFoundError(f\"File not found: {file}\")\r\n\r\n        logger.info(f\"Loading file: {file}\")\r\n        self.file = file\r\n        self.extension = os.path.splitext(file)[-1].lower()\r\n\r\n        try:\r\n            self.table = self.load_file()\r\n            logger.info(f\"File loaded successfully: {file}\")\r\n        except Exception as e:\r\n            logger.error(f\"Failed to load file: {e}\")\r\n            raise\r\n\r\n        try:\r\n            self.convert_to_csv()\r\n        except Exception as e:\r\n            logger.error(f\"Failed to convert file to CSV: {e}\")\r\n            raise\r\n\r\n    def convert_to_csv(self, output_file=None):\r\n        if output_file is None:\r\n            output_file = os.path.splitext(self.file)[0] + \".csv\"\r\n\r\n        self.table.to_csv(output_file, index=False)\r\n        logger.info(f\"File converted and saved as CSV: {output_file}\")\r\n\r\n    def load_file(self):\r\n        if self.extension == \".csv\":\r\n            return pd.read_csv(self.file)\r\n        elif self.extension == \".json\":\r\n            return pd.read_json(self.file)\r\n        elif self.extension in [\".xls\", \".xlsx\"]:\r\n            return pd.read_excel(self.file)\r\n        elif self.extension == \".txt\":\r\n            return pd.read_csv(self.file, delimiter=\"\\t\")\r\n        elif self.extension == \".html\":\r\n            return pd.read_html(self.file)[0]\r\n        else:\r\n            raise ValueError(f\"Unsupported file format: {self.extension}\")\r\n
+===================================================================
+diff --git a/App/loader.py b/App/loader.py
+--- a/App/loader.py	(revision 7de00af60f6ac875d34bb77d00a594cd17d7f4c3)
++++ b/App/loader.py	(date 1753193946924)
+@@ -2,7 +2,6 @@
+ import os
+ import logging
+ 
+-logger = logging.getLogger(__name__)
+ 
+ class Loader:
+     """
+@@ -10,44 +9,49 @@
+     """
+ 
+     def __init__(self, file):
++        """
++        Initialize the Loader with a file path.
++        Loads the file immediately and converts it to CSV.
++        """
++        logging.info(f"Initializing Loader with file: {file}")
+         if not os.path.exists(file):
+-            logger.error(f"File not found: {file}")
++            logging.error(f"File not found: {file}")
+             raise FileNotFoundError(f"File not found: {file}")
+ 
+-        logger.info(f"Loading file: {file}")
+         self.file = file
+         self.extension = os.path.splitext(file)[-1].lower()
+-
+-        try:
+-            self.table = self.load_file()
+-            logger.info(f"File loaded successfully: {file}")
+-        except Exception as e:
+-            logger.error(f"Failed to load file: {e}")
+-            raise
+-
+-        try:
+-            self.convert_to_csv()
+-        except Exception as e:
+-            logger.error(f"Failed to convert file to CSV: {e}")
+-            raise
++        logging.info(f"Detected file extension: {self.extension}")
++        self.table = self.load_file()
++        self.convert_to_csv()
+ 
+     def convert_to_csv(self, output_file=None):
++        """
++        Convert the loaded file to CSV format.
++        If output_file is not specified, it will use the same name with .csv extension.
++        """
+         if output_file is None:
+             output_file = os.path.splitext(self.file)[0] + ".csv"
+ 
+         self.table.to_csv(output_file, index=False)
+-        logger.info(f"File converted and saved as CSV: {output_file}")
++        logging.info(f"File converted and saved as CSV: {output_file}")
+ 
+     def load_file(self):
++        """
++        Detect the file type and load it as a pandas DataFrame.
++        """
++        logging.info(f"Loading file: {self.file}")
+         if self.extension == ".csv":
+-            return pd.read_csv(self.file)
++            df = pd.read_csv(self.file)
+         elif self.extension == ".json":
+-            return pd.read_json(self.file)
++            df = pd.read_json(self.file)
+         elif self.extension in [".xls", ".xlsx"]:
+-            return pd.read_excel(self.file)
++            df = pd.read_excel(self.file)
+         elif self.extension == ".txt":
+-            return pd.read_csv(self.file, delimiter="\t")
++            df = pd.read_csv(self.file, delimiter="\t")
+         elif self.extension == ".html":
+-            return pd.read_html(self.file)[0]
++            df = pd.read_html(self.file)[0]
+         else:
++            logging.error(f"Unsupported file format: {self.extension}")
+             raise ValueError(f"Unsupported file format: {self.extension}")
++        logging.info(f"File loaded successfully with shape {df.shape}")
++        return df
+\ No newline at end of file
+Index: App/cleam_table.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nimport logging\r\n\r\nlogger = logging.getLogger(__name__)\r\n\r\nclass CleanTable:\r\n    def __init__(self, csv_file):\r\n        self.table = csv_file\r\n        logger.info(\"CleanTable initialized\")\r\n        self.start_all()\r\n\r\n    def drop_null(self):\r\n        before = self.table.shape\r\n        self.table = self.table.dropna()\r\n        after = self.table.shape\r\n        logger.info(f\"drop_null: dropped {before[0] - after[0]} rows with nulls\")\r\n\r\n    def drop_index(self):\r\n        cols_to_drop = [col for col in self.table.columns if self.table[col].nunique() == self.table.shape[0]]\r\n        self.table = self.table.drop(columns=cols_to_drop)\r\n        logger.info(f\"drop_index: dropped {len(cols_to_drop)} columns considered as index\")\r\n\r\n    def drop_duplicate(self):\r\n        before = self.table.shape[1]\r\n        duplicated = self.table.T.duplicated()\r\n        self.table = self.table.loc[:, ~duplicated]\r\n        after = self.table.shape[1]\r\n        logger.info(f\"drop_duplicate: dropped {before - after} duplicated columns\")\r\n\r\n    def start_all(self):\r\n        logger.info(\"Starting cleaning process\")\r\n        self.drop_index()\r\n        self.drop_null()\r\n        self.drop_duplicate()\r\n        logger.info(\"Cleaning process completed\")\r\n
+===================================================================
+diff --git a/App/cleam_table.py b/App/cleam_table.py
+--- a/App/cleam_table.py	(revision 7de00af60f6ac875d34bb77d00a594cd17d7f4c3)
++++ b/App/cleam_table.py	(date 1753193826213)
+@@ -1,4 +1,4 @@
+-
++import pandas as pd
+ import logging
+ 
+ logger = logging.getLogger(__name__)
+Index: App/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import logging\r\nimport uvicorn\r\nfrom fastapi import FastAPI\r\nfrom App.cleam_table import CleanTable\r\nfrom App.loader import Loader\r\nfrom App.model import NaiveBayesClassifier\r\nfrom App.naive_bayes import NaiveBayesPredictor\r\nimport os\r\n\r\n# Create the Logs directory if it doesn't exist\r\nos.makedirs(\"Logs\", exist_ok=True)\r\n\r\n\r\nlogging.basicConfig(\r\n    level=logging.INFO,\r\n    format=\"%(asctime)s | %(name)s | %(levelname)s | %(message)s\",\r\n    handlers=[\r\n        logging.FileHandler(\"Logs/project.log\"),\r\n        logging.StreamHandler()\r\n    ]\r\n)\r\nBASE_DIR = os.path.dirname(os.path.dirname(__file__))\r\n\r\nlogger = logging.getLogger(__name__)\r\nlogger.info(\"Starting application\")\r\n\r\nDATA_DIR = os.path.join(BASE_DIR, \"data\")\r\npath = os.path.join(DATA_DIR, \"buy_computer_data.csv\")\r\n\r\nlogger.info(f\"Loading CSV file from path: {path}\")\r\nfile = Loader(path)\r\n\r\nct = CleanTable(file.table)\r\nlogger.info(\"CleanTable created\")\r\n\r\nmodel = NaiveBayesClassifier(ct.table)\r\npc = NaiveBayesPredictor\r\nlogger.info(\"Model created\")\r\napp = FastAPI()\r\n\r\n\r\n@app.get(\"/{predict}\")\r\nasync def root(predict):\r\n    logger.info(\"Root endpoint called\")\r\n    if predict == \"favicon.ico\":\r\n        return {\"answer\": \"favicon.ico ignored\"}\r\n    predict = predict.split(\".\")\r\n    s_dic = {}\r\n    for i in range(0, len(predict), 2):\r\n        s_dic[predict[i]] = predict[i + 1]\r\n    return {\"answer\": pc.predict(s_dic, model.model, model.target_variable())}\r\n\r\n# if __name__ == \"__main__\":\r\n#     uvicorn.run(app, host=\"127.0.0.1\", port=8000)\r\n
+===================================================================
+diff --git a/App/main.py b/App/main.py
+--- a/App/main.py	(revision 7de00af60f6ac875d34bb77d00a594cd17d7f4c3)
++++ b/App/main.py	(date 1753195313296)
+@@ -7,6 +7,8 @@
+ from App.naive_bayes import NaiveBayesPredictor
+ import os
+ 
++from App.test_model import TestTable
++
+ # Create the Logs directory if it doesn't exist
+ os.makedirs("Logs", exist_ok=True)
+ 
+@@ -23,21 +25,28 @@
+ 
+ logger = logging.getLogger(__name__)
+ logger.info("Starting application")
+-
+ DATA_DIR = os.path.join(BASE_DIR, "data")
+ path = os.path.join(DATA_DIR, "buy_computer_data.csv")
+ 
++
+ logger.info(f"Loading CSV file from path: {path}")
+ file = Loader(path)
+ 
+ ct = CleanTable(file.table)
+ logger.info("CleanTable created")
+ 
++test = TestTable(ct.table).test()
++
++
+ model = NaiveBayesClassifier(ct.table)
+ pc = NaiveBayesPredictor
+ logger.info("Model created")
+ app = FastAPI()
+ 
++@app.get("/")
++async def root():
++    logging.info("Root endpoint called")
++    return {"wellcome to the baysian model"}
+ 
+ @app.get("/{predict}")
+ async def root(predict):
+@@ -50,5 +59,5 @@
+         s_dic[predict[i]] = predict[i + 1]
+     return {"answer": pc.predict(s_dic, model.model, model.target_variable())}
+ 
+-# if __name__ == "__main__":
+-#     uvicorn.run(app, host="127.0.0.1", port=8000)
++if __name__ == "__main__":
++    uvicorn.run(app, host="127.0.0.1", port=8000)
+Index: App/test_model.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import logging\r\nfrom App.model import NaiveBayesClassifier\r\nfrom App.naive_bayes import NaiveBayesPredictor\r\n\r\nlogger = logging.getLogger(__name__)\r\n\r\nclass TestTable:\r\n    def __init__(self, table):\r\n        self.table = table\r\n        self.row_dict = {}\r\n\r\n        logger.info(\"Initializing TestTable...\")\r\n\r\n        total_rows = len(table)\r\n        split_index = int(total_rows * 0.7)\r\n        logger.info(f\"Splitting table: {split_index} train / {total_rows - split_index} test\")\r\n\r\n        train_data = table.iloc[:split_index]\r\n        test_data = table.iloc[split_index:]\r\n\r\n        self.model = NaiveBayesClassifier(train_data)\r\n        self.target = test_data[self.model.target_column]\r\n        self.test_table = test_data.iloc[:, :-1]\r\n\r\n        logger.info(\"TestTable initialized successfully\")\r\n\r\n    def test(self):\r\n        logger.info(\"Running test...\")\r\n        for i in range(len(self.test_table)):\r\n            self.row_dict[i] = self.test_table.iloc[i].to_dict()\r\n\r\n        total = len(self.row_dict)\r\n        correct = 0\r\n        for i in range(total):\r\n            user_row = self.row_dict[i]\r\n            result = NaiveBayesPredictor.predict(user_row, self.model.model, self.model.target_variable())\r\n            if result == self.target.iloc[i]:\r\n                correct += 1\r\n\r\n        success_message = f\"Successful on {correct} from {total}, -> {int((correct * 100) / total)}% success\"\r\n        logger.info(success_message)\r\n        return success_message\r\n\r\n\r\n
+===================================================================
+diff --git a/App/test_model.py b/App/test_model.py
+--- a/App/test_model.py	(revision 7de00af60f6ac875d34bb77d00a594cd17d7f4c3)
++++ b/App/test_model.py	(date 1753195313287)
+@@ -1,4 +1,7 @@
+ import logging
++
++from App.cleam_table import CleanTable
++from App.loader import Loader
+ from App.model import NaiveBayesClassifier
+ from App.naive_bayes import NaiveBayesPredictor
+ 
+@@ -39,6 +42,6 @@
+ 
+         success_message = f"Successful on {correct} from {total}, -> {int((correct * 100) / total)}% success"
+         logger.info(success_message)
+-        return success_message
++        return int((correct * 100) / total) > 85
+ 
+ 

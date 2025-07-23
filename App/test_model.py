@@ -39,6 +39,6 @@ class TestTable:
 
         success_message = f"Successful on {correct} from {total}, -> {int((correct * 100) / total)}% success"
         logger.info(success_message)
-        return success_message
+        return int((correct * 100) / total)
 
 
