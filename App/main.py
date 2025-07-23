@@ -3,11 +3,11 @@ import uvicorn
 from fastapi import FastAPI
 import os
 
-from test_model import TestTable
-from cleam_table import CleanTable
-from loader import Loader
-from model import NaiveBayesClassifier
-from naive_bayes import NaiveBayesPredictor
+from App.test_model import TestTable
+from App.cleam_table import CleanTable
+from App.loader import Loader
+from App.model import NaiveBayesClassifier
+from App.naive_bayes import NaiveBayesPredictor
 
 
 def setup_logging():
@@ -75,5 +75,4 @@ async def root(predict):
     return {"answer": pc.predict(s_dic, model.model, model.target_variable())}
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+
