@@ -1,6 +1,6 @@
 import logging
-from App.model import NaiveBayesClassifier
-from App.naive_bayes import NaiveBayesPredictor
+from .model import NaiveBayesClassifier
+from .naive_bayes import NaiveBayesPredictor
 
 logger = logging.getLogger(__name__)
 

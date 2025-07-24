@@ -41,6 +41,6 @@ class NaiveBayesClassifier:
     def start_all(self):
         logger.info("Starting model creation process")
         self.create_dict()
-        self.target_variable()  # הערה: התוצאה לא נשמרת כאן
+        self.target_variable()
         self.statistical_values()
         logger.info("Model created successfully")
