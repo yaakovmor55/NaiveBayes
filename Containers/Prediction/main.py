@@ -1,4 +1,4 @@
-from classifier.naive_bayes import NaiveBayesPredictor
+from App.naive_bayes import NaiveBayesPredictor
 from fastapi import FastAPI
 import requests
 

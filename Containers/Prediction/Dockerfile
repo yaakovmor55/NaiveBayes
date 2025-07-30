@@ -5,10 +5,21 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy all project files to the container's working directory
-COPY . .
+COPY Containers/Prediction/requirements.txt .
+COPY Containers/Prediction/main.py .
 
 # Install Python dependencies listed in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+
+
+
+
+COPY App/__init__.py .
+COPY App/naive_bayes.py .
+
+
+
+
 
 # Start the FastAPI application using Uvicorn
 # Note: 'App.main:app' refers to 'main.py' inside the 'App' folder

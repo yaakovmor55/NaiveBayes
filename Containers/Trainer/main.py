@@ -2,10 +2,10 @@ import logging
 from fastapi import FastAPI
 import os
 
-from classifier.test_model import TestTable
-from load_data.cleam_table import CleanTable
-from load_data.loader import Loader
-from classifier.model import NaiveBayesClassifier
+from App.test_model import TestTable
+from App.cleam_table import CleanTable
+from App.loader import Loader
+from App.model import NaiveBayesClassifier
 
 
 
